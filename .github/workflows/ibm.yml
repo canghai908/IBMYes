@@ -35,7 +35,7 @@ jobs:
         IBM_SPACE: ${{ secrets.IBM_SPACE }}
       run: |
         ./IBM_Cloud_CLI/ibmcloud target -g "$RESOURSE_ID"
-        ./IBM_Cloud_CLI/ibmcloud target --cf
+        ./IBM_Cloud_CLI/ibmcloud target --cf-api https://api.us-south.cf.cloud.ibm.com
         ./IBM_Cloud_CLI/ibmcloud cf install -f
         ./IBM_Cloud_CLI/ibmcloud target -o "$IBM_ORG" -s "$IBM_SPACE"
     - name: Restart IBM Cloud
