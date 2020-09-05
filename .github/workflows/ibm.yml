@@ -30,19 +30,12 @@ jobs:
         EOF
     - name: Target IBM Cloud
       env:
-        RESOURSE_ID: ${{ secrets.RESOURSE_ID }}
+        IBM_ORG: ${{ secrets.IBM_ORG }}
+        IBM_SPACE: ${{ secrets.IBM_SPACE }}
       run: |
-        ./IBM_Cloud_CLI/ibmcloud target -g "$RESOURSE_ID"
-        ./IBM_Cloud_CLI/ibmcloud target --cf
-        ./IBM_Cloud_CLI/ibmcloud cf install -f
-    - name: Trage IBM Cloud
-      env:
-        IBM_ACCOUNT: ${{ secrets.IBM_ACCOUNT }}
-      run: |
-        ./IBM_Cloud_CLI/ibmcloud target -o "$IBM_ACCOUNT" -s dev
+        ./IBM_Cloud_CLI/ibmcloud target -o "$IBM_ORG" -s "$IBM_SPACE"
     - name: Restart IBM Cloud
       env:
         IBM_APP_NAME: ${{ secrets.IBM_APP_NAME }}
       run: |
         ./IBM_Cloud_CLI/ibmcloud app restart "$IBM_APP_NAME"
-
